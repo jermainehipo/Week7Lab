@@ -22,45 +22,51 @@
                 <th></th>
                 <th></th>
             </tr>
-            
+            <c:forEach items="${users}" var="user">
                 <tr>
-                    <td>${email}</td>
-                    <td>${firstname}</td>
-                    <td>${lastname}</td>
-                    <td>${role}</td>
-                    <td><a href="">Edit</a></td>
-                    <td><a href="">Delete</a></td>
+                    <td>${user.email}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.role}</td>
+                    <td><a href="users?action=edit">Edit</a></td>
+                    <input type="hidden" name="action" value="delete">
+                    <td><a href="users">Delete</a></td>
                 </tr>
-                
+            </c:forEach>
         </table>
-        
-        <h2>Add User</h2>
-        <form method="post" action="add">
-            Email: <input type="text"><br>
-            First name: <input type="text"><br>
-            Last name: <input type="text"><br>
-            Password: <input type="text"><br>
-            Role: <select>
-
-                    <option></option>
-                    
-            </select>
-            <input type="submit" value="Add user">
-        </form>
-        
-        <h2>Edit User</h2>
-        <form method="post" action="add">
-            Email: <input type="text"><br>
-            First name: <input type="text"><br>
-            Last name: <input type="text"><br>
-            Password: <input type="text"><br>
-            Role: <select>
-                
-                    <option></option>
-
-            </select>
-            <input type="submit" value="Update">
-            <input type="button" value="Cancel">
-        </form>
+        <c:if test="${(action eq null) || (action ne 'edit')}">
+            <h2>Add User</h2>
+            <form method="post" action="add">
+                Email: <input type="users"><br>
+                First name: <input type="text"><br>
+                Last name: <input type="text"><br>
+                Password: <input type="text"><br>
+                Role: <select>
+                    <c:forEach items="${roles}" var="role">
+                        <option>${role.roleName}</option>
+                    </c:forEach>
+                </select><br>
+                <input type="hidden" name="action" value="add">
+                <input type="submit" value="Add user">
+            </form>
+        </c:if>
+        <c:if test="${(action eq 'edit')}">
+            <h2>Edit User</h2>
+            <form method="post" action="users">
+                Email: <input type="text"><br>
+                First name: <input type="text"><br>
+                Last name: <input type="text"><br>
+                Password: <input type="text"><br>
+                Role: <select>
+                    <c:forEach items="${roles}" var="role">
+                        <option>${role.roleName}</option>
+                    </c:forEach>
+                </select><br>
+                <input type="hidden" name="action" value="update">
+                <input type="submit" value="Update">
+                <input type="hidden" name="action" value="cancel">
+                <input type="submit" value="Cancel" onclick=" ">
+            </form>
+        </c:if>
     </body>
 </html>
