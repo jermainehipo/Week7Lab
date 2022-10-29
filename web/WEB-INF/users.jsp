@@ -36,30 +36,30 @@
         </table>
         <c:if test="${(action eq null) || (action ne 'edit')}">
             <h2>Add User</h2>
-            <form method="post" action="add">
-                Email: <input type="users"><br>
-                First name: <input type="text"><br>
-                Last name: <input type="text"><br>
-                Password: <input type="text"><br>
-                Role: <select>
+            <form method="post" action="users">
+                Email: <input type="users" name="email"><br>
+                First name: <input type="text" name="firstname"><br>
+                Last name: <input type="text" name="lastname"><br>
+                Password: <input type="text" name="password"><br>
+                Role: <select name="roleid">
                     <c:forEach items="${roles}" var="role">
-                        <option>${role.roleName}</option>
+                        <option value="${role.roleId}">${role.roleName}</option>
                     </c:forEach>
                 </select><br>
-                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="action" value="insert">
                 <input type="submit" value="Add user">
             </form>
         </c:if>
         <c:if test="${(action eq 'edit')}">
             <h2>Edit User</h2>
             <form method="post" action="users">
-                Email: <input type="text"><br>
-                First name: <input type="text"><br>
-                Last name: <input type="text"><br>
-                Password: <input type="text"><br>
-                Role: <select>
+                Email: <input type="text" name="email"><br>
+                First name: <input type="text" name="firstname"><br>
+                Last name: <input type="text" name="lastname"><br>
+                Password: <input type="text" name="password"><br>
+                Role: <select name="roleid">
                     <c:forEach items="${roles}" var="role">
-                        <option>${role.roleName}</option>
+                        <option value="${role.roleId}">${role.roleName}</option>
                     </c:forEach>
                 </select><br>
                 <input type="hidden" name="action" value="update">
