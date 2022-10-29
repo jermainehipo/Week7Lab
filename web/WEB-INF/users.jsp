@@ -29,8 +29,7 @@
                     <td>${user.lastName}</td>
                     <td>${user.role}</td>
                     <td><a href="users?action=edit">Edit</a></td>
-                    <input type="hidden" name="action" value="delete">
-                    <td><a href="users">Delete</a></td>
+                    <td><a href="users?action=delete&amp;email=${user.email}">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
